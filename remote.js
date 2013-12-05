@@ -66,6 +66,10 @@ function getRemoteScript() {
       remoteScript = scripts[i];
       break;
     }
+    if (/192\.168\..*(:\d+)?\/remote.js/.test(scripts[i].src)) {		// added to support "local debugging"
+      remoteScript = scripts[i];
+      break;
+    }
   }
   
   return remoteScript;
