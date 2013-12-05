@@ -22,16 +22,6 @@ function stringify(o, simple) {
     }
     json += parts.join(', ') + ']';
     json;
-  } else if (type == '[object Object]') {
-    json = '{';
-    for (i in o) {
-      names.push(i);
-    }
-    names.sort(sortci);
-    for (i = 0; i < names.length; i++) {
-      parts.push(stringify(names[i]) + ': ' + stringify(o[names[i] ], simple));
-    }
-    json += parts.join(', ') + '}';
   } else if (type == '[object Number]') {
     json = o+'';
   } else if (type == '[object Boolean]') {
@@ -43,6 +33,7 @@ function stringify(o, simple) {
   } else if (o === undefined) {
     json = 'undefined';
   } else if (simple == undefined) {
+	  // [object Object]
     json = type + '{\n';
     for (i in o) {
       names.push(i);
@@ -53,6 +44,7 @@ function stringify(o, simple) {
     }
     json += parts.join(',\n') + '\n}';
   } else {
+	  // [object Object]
     try {
       json = o+''; // should look like an object
     } catch (e) {}
